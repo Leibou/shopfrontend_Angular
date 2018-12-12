@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="form-group">
+    <label>Rechercher un article :</label>
+    <input type="text" class="input-group-sm" [(ngModel)]="motCle">
+    <button class="btn btn-primary spacer" (click)="Chercher()">Chercher</button>
+      <button class="btn btn-success spacer" routerLink="/new-article" style="float: right;"><i class="fa fa-plus"></i>Ajouter article</button>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="status==''">
+    <tr  *ngFor="let a of pageArticles?.content">
+      <th scope="row">{{a.id}}</th>
+      <td>{{a.titre}}</td>
+      <td>{{a.description}}</td>
+      <td>{{a.prix}}</td>
+      <td><a (click)="OnEditArticle(a.id)" style="cursor: pointer;"><i class="fa fa-pencil"></i> </a></td>
+      <td><a (click)="OnDeleteArticle(a)" style="cursor: pointer;"><i class="fa fa-trash" style="color: crimson;"></i></a></td>
+    </tr>
+    </tbody>
+    <tbody *ngIf="status != ''">
+    {{status}}
+    </tbody>
+  </table>
+  <div class="container">
+    <!--<ul class="nav nav-pills">
+      <li *ngFor="let p of pagination, let i=index">
+        <a (click)="GotoNextPages(i)">{{i}}</a>
+      </li>
+    </ul>-->
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li [ngClass]="{'active': i==currentPage}" class="page-item active" *ngFor="let p of pagination, let i = index">
+          <a class="page-link" (click)="GotoNexPages(i)"> {{i}}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" >Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

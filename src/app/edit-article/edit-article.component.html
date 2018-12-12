@@ -1,0 +1,48 @@
+<div class="container">
+  <div *ngIf="mode==1">
+    <div class="alert alert-primary" role="alert">
+      Modifier un article : {{article.titre}}
+    </div>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Titre de l'article</label>
+          <input [(ngModel)]="article.titre" type="text" class="form-control" name="titre">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Prix de l'article</label>
+          <input [(ngModel)]="article.prix" name="prix" type="text" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description de l'article</label>
+        <input [(ngModel)]="article.description" class="form-control" name="description" type="text">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="updateArticle()">Enregistrer</button>
+    </form>
+  </div>
+  <div *ngIf="mode==2">
+    <div class="alert alert-info" role="alert">
+      Article ajouté avec succès !!!
+    </div>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Titre de l'article :</label>
+          <label>{{article.titre}}</label>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Description de l'article</label>
+          <label>{{article.description}}</label>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Prix de l'article</label>
+          <label>{{article.prix}}</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="mode=1" >Nouvel article</button>
+      <button type="submit" class="btn btn-primary spacer" routerLink="/articles">Tous les articles</button>
+    </form>
+  </div>
+
+</div>
